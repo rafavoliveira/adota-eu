@@ -6,22 +6,22 @@ const User = mongoose.model(
   new Schema(
     {
       name: {
-        type: string,
+        type: String,
         required: true,
       },
       email: {
-        type: string,
+        type: String,
         required: true,
       },
       password: {
-        type: string,
+        type: String,
         required: true,
       },
       image: {
-        type: string,
+        type: String,
       },
       phone: {
-        type: string,
+        type: String,
         required: true,
       },
     },

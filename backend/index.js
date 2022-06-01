@@ -13,9 +13,14 @@ app.use(
   })
 );
 
-//public folder for images
+//PUBLIC FOLDER IMAGES
 app.use(express.static("public"));
-//routes
+
+//ROUTES
+const UserRoutes = require("./routes/UserRoutes");
+app.use("/users", UserRoutes);
+
+//SERVER
 app.listen(5000, () => {
   console.log("server running...");
 });
