@@ -125,19 +125,9 @@ module.exports = class UserController {
   static async editUser(req, res) {
     const token = getToken(req);
 
-    //console.log(token);
-
     const user = await getUserByToken(token);
 
-    // console.log(user);
-    // console.log(req.body)
-    // console.log(req.file.filename)
-
-    const name = req.body.name;
-    const email = req.body.email;
-    const phone = req.body.phone;
-    const password = req.body.password;
-    const confirmpassword = req.body.confirmpassword;
+    const { name, email, phone, password, confirmPassword } = req.body;
 
     let image = "";
 
@@ -181,11 +171,12 @@ module.exports = class UserController {
     user.phone = phone;
 
     // check if password match
-    if (password != confirmpassword) {
+    if (password != confirmPassword) {
+      console.log(password, confirmPassword);
       res.status(422).json({ error: "As senhas não conferem." });
       return;
       // change password
-    } else if (password == confirmpassword && password != null) {
+    } else if (password == confirmPassword && password != null) {
       // creating password
       const salt = await bcrypt.genSalt(12);
       const reqPassword = req.body.password;
